@@ -1,0 +1,9 @@
+<div>
+  <h1>home</h1>
+  <% if user_signed_in? %>
+      <%= button_to 'Sign Out', destroy_user_session_path, class: '', method: :delete %>
+    <% else %>
+      <%= button_to 'Sign In', new_user_session_path, class: '' %>
+      <%= button_to 'Sign Up', new_user_registration_path, class: '' %>
+  <% end %>
+</div>

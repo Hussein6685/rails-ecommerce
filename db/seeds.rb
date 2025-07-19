@@ -7,3 +7,20 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+5.times do |index|
+  Category.create!(
+    title: "صنف #{index}"
+  )
+end
+
+20.times do |index|
+  Product.create!(
+    name: "المنتج #{index}",
+    details: "صنف #{index}",
+    price: index * 50,
+    image_url: "products/0#{1 + index % 8}.jpg",
+    size: 1 + index % 3,
+    category_id: 1 + index % 5,
+  )
+end

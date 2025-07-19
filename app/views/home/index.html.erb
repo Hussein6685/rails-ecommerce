@@ -1,9 +1,147 @@
-<div>
-  <h1>home</h1>
-  <% if user_signed_in? %>
-      <%= button_to 'Sign Out', destroy_user_session_path, class: '', method: :delete %>
-    <% else %>
-      <%= button_to 'Sign In', new_user_session_path, class: '' %>
-      <%= button_to 'Sign Up', new_user_registration_path, class: '' %>
-  <% end %>
+<!-- Hero Section -->
+<div class="container mx-auto px-4 my-6 relative image-container hover:bg-[rgba(0,0,0,0.88)]">
+  <%= image_tag "main-image.jpg", class: "w-full h-auto mx-auto", alt: "shop image" %>
+  <div class="image-caption">
+    <h1>متجر ألبسة</h1>
+    <p>أفضل أنوع الألبسة المحلية والمستوردة</p>
+  </div>
+</div>
+
+<!-- Filter Section -->
+<div class="container mx-auto px-4 my-6 text-center">
+  <div class="flex flex-wrap justify-center gap-4">
+    <!-- Age Category Dropdown -->
+    <div class="relative dropdown">
+      <button class="btn-primary flex items-center min-w-48">
+        الفئة العمرية
+        <svg class="w-4 h-4 mr-2 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </button>
+      <div class="dropdown-menu">
+        <a href="#" class="dropdown-item">ولادي</a>
+        <a href="#" class="dropdown-item">رجالي</a>
+        <a href="#" class="dropdown-item">نسائي</a>
+      </div>
+    </div>
+
+    <!-- Size Dropdown -->
+    <div class="relative dropdown">
+      <button class="btn-primary flex items-center min-w-48">
+        المقاس
+        <svg class="w-4 h-4 mr-2 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </button>
+      <div class="dropdown-menu">
+        <a href="#" class="dropdown-item">small</a>
+        <a href="#" class="dropdown-item">medium</a>
+        <a href="#" class="dropdown-item">large</a>
+      </div>
+    </div>
+
+    <!-- Price Dropdown -->
+    <div class="relative dropdown">
+      <button class="btn-primary flex items-center min-w-48">
+        السعر
+        <svg class="w-4 h-4 mr-2 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </button>
+      <div class="dropdown-menu">
+        <a href="#" class="dropdown-item">أقل من 50$</a>
+        <a href="#" class="dropdown-item">أقل من 300$</a>
+        <a href="#" class="dropdown-item">300$ وأكثر</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Products Section -->
+<div class="container mx-auto px-4 my-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+    <!-- Product Card 1 -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden product-card w-full max-w-sm">
+      <%= image_tag "products/02.jpg", class: "w-full h-64 object-cover", alt: "جاكيت رجالي" %>
+      <div class="p-6 text-center">
+        <h3 class="text-xl font-bold mb-3 text-gray-800">جاكيت رجالي</h3>
+        <p class="text-gray-600 mb-4 px-4">من أجود أنواع الملابس ماركة مسجلة عالميًا في إنتاج أفضل أنواع الملابس المنسوجة بعناية</p>
+        <div class="mb-4 space-y-1">
+          <div class="text-sm font-semibold text-gray-700">السعر: 120$</div>
+          <div class="text-sm font-semibold text-gray-700">المقاس: xl</div>
+        </div>
+        <a href="#" class="btn-primary px-8 py-2">شراء</a>
+      </div>
+    </div>
+
+    <!-- Product Card 2 -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden product-card w-full max-w-sm">
+      <%= image_tag "products/03.jpg", class: "w-full h-64 object-cover", alt: "أفرول ولادي" %>
+      <div class="p-6 text-center">
+        <h3 class="text-xl font-bold mb-3 text-gray-800">أفرول ولادي</h3>
+        <p class="text-gray-600 mb-4 px-4">من أجود أنواع الملابس ماركة مسجلة عالميًا في إنتاج أفضل أنواع الملابس المنسوجة بعناية</p>
+        <div class="mb-4 space-y-1">
+          <div class="text-sm font-semibold text-gray-700">السعر: 120$</div>
+          <div class="text-sm font-semibold text-gray-700">المقاس: xl</div>
+        </div>
+        <a href="#" class="btn-primary px-8 py-2">شراء</a>
+      </div>
+    </div>
+
+    <!-- Product Card 3 -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden product-card w-full max-w-sm">
+      <%= image_tag "products/04.jpg", class: "w-full h-64 object-cover", alt: "بلوزة شبابية" %>
+      <div class="p-6 text-center">
+        <h3 class="text-xl font-bold mb-3 text-gray-800">بلوزة شبابية</h3>
+        <p class="text-gray-600 mb-4 px-4">من أجود أنواع الملابس ماركة مسجلة عالميًا في إنتاج أفضل أنواع الملابس المنسوجة بعناية</p>
+        <div class="mb-4 space-y-1">
+          <div class="text-sm font-semibold text-gray-700">السعر: 120$</div>
+          <div class="text-sm font-semibold text-gray-700">المقاس: xl</div>
+        </div>
+        <a href="#" class="btn-primary px-8 py-2">شراء</a>
+      </div>
+    </div>
+
+    <!-- Product Card 4 -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden product-card w-full max-w-sm">
+      <%= image_tag "products/05.jpg", class: "w-full h-64 object-cover", alt: "قبعة صيفية" %>
+      <div class="p-6 text-center">
+        <h3 class="text-xl font-bold mb-3 text-gray-800">قبعة صيفية</h3>
+        <p class="text-gray-600 mb-4 px-4">من أجود أنواع الملابس ماركة مسجلة عالميًا في إنتاج أفضل أنواع الملابس المنسوجة بعناية</p>
+        <div class="mb-4 space-y-1">
+          <div class="text-sm font-semibold text-gray-700">السعر: 120$</div>
+          <div class="text-sm font-semibold text-gray-700">المقاس: xl</div>
+        </div>
+        <a href="#" class="btn-primary px-8 py-2">شراء</a>
+      </div>
+    </div>
+
+    <!-- Product Card 5 -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden product-card w-full max-w-sm">
+      <%= image_tag "products/06.jpg", class: "w-full h-64 object-cover", alt: "بنطال رسمي" %>
+      <div class="p-6 text-center">
+        <h3 class="text-xl font-bold mb-3 text-gray-800">بنطال رسمي</h3>
+        <p class="text-gray-600 mb-4 px-4">من أجود أنواع الملابس ماركة مسجلة عالميًا في إنتاج أفضل أنواع الملابس المنسوجة بعناية</p>
+        <div class="mb-4 space-y-1">
+          <div class="text-sm font-semibold text-gray-700">السعر: 120$</div>
+          <div class="text-sm font-semibold text-gray-700">المقاس: xl</div>
+        </div>
+        <a href="#" class="btn-primary px-8 py-2">شراء</a>
+      </div>
+    </div>
+
+    <!-- Product Card 6 -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden product-card w-full max-w-sm">
+      <%= image_tag "products/07.jpg", class: "w-full h-64 object-cover", alt: "حذاء رسمي" %>
+      <div class="p-6 text-center">
+        <h3 class="text-xl font-bold mb-3 text-gray-800">حذاء رسمي</h3>
+        <p class="text-gray-600 mb-4 px-4">من أجود أنواع الملابس ماركة مسجلة عالميًا في إنتاج أفضل أنواع الملابس المنسوجة بعناية</p>
+        <div class="mb-4 space-y-1">
+          <div class="text-sm font-semibold text-gray-700">السعر: 120$</div>
+          <div class="text-sm font-semibold text-gray-700">المقاس: xl</div>
+        </div>
+        <a href="#" class="btn-primary px-8 py-2">شراء</a>
+      </div>
+    </div>
+  </div>
 </div>

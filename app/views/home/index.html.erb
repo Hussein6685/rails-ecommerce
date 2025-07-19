@@ -60,88 +60,26 @@
 <!-- Products Section -->
 <div class="container mx-auto px-4 my-6">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+    <% @products.each do |product| %>
     <!-- Product Card 1 -->
     <div class="bg-white rounded-lg shadow-lg overflow-hidden product-card w-full max-w-sm">
-      <%= image_tag "products/02.jpg", class: "w-full h-64 object-cover", alt: "جاكيت رجالي" %>
+      <%# <%= image_tag "products/02.jpg", class: "w-full h-64 object-cover", alt: "جاكيت رجالي" %>
+      <%# <%= image_tag "products/#{products.image_url}", class: "w-full h-64 object-cover", alt: product.name %>
+            <% if product.image_url.present? %>
+        <%= image_tag(product.images_url, class: "card-img-top", alt: product.name) rescue image_tag("logo.png", class: "card-img-top", alt: product.name) %>
+      <% else %>
+        <%= image_tag("logo.png", class: "card-img-top", alt: product.name) %>
+      <% end %>
       <div class="p-6 text-center">
-        <h3 class="text-xl font-bold mb-3 text-gray-800">جاكيت رجالي</h3>
-        <p class="text-gray-600 mb-4 px-4">من أجود أنواع الملابس ماركة مسجلة عالميًا في إنتاج أفضل أنواع الملابس المنسوجة بعناية</p>
+        <h3 class="text-xl font-bold mb-3 text-gray-800"><%= product.name %></h3>
+        <p class="text-gray-600 mb-4 px-4"><%= product.details %></p>
         <div class="mb-4 space-y-1">
-          <div class="text-sm font-semibold text-gray-700">السعر: 120$</div>
-          <div class="text-sm font-semibold text-gray-700">المقاس: xl</div>
+          <div class="text-sm font-semibold text-gray-700">السعر: <%= product.price %>$</div>
+          <div class="text-sm font-semibold text-gray-700">المقاس: <%= product.size %></div>
         </div>
-        <a href="#" class="btn-primary px-8 py-2">شراء</a>
+          <%= button_to('اضافة الى السلة', cart_add_to_cart_path, :class => "btn btn-primary", :form_class => "mt-5 d-inline-block")%>
       </div>
     </div>
-
-    <!-- Product Card 2 -->
-    <div class="bg-white rounded-lg shadow-lg overflow-hidden product-card w-full max-w-sm">
-      <%= image_tag "products/03.jpg", class: "w-full h-64 object-cover", alt: "أفرول ولادي" %>
-      <div class="p-6 text-center">
-        <h3 class="text-xl font-bold mb-3 text-gray-800">أفرول ولادي</h3>
-        <p class="text-gray-600 mb-4 px-4">من أجود أنواع الملابس ماركة مسجلة عالميًا في إنتاج أفضل أنواع الملابس المنسوجة بعناية</p>
-        <div class="mb-4 space-y-1">
-          <div class="text-sm font-semibold text-gray-700">السعر: 120$</div>
-          <div class="text-sm font-semibold text-gray-700">المقاس: xl</div>
-        </div>
-        <a href="#" class="btn-primary px-8 py-2">شراء</a>
-      </div>
-    </div>
-
-    <!-- Product Card 3 -->
-    <div class="bg-white rounded-lg shadow-lg overflow-hidden product-card w-full max-w-sm">
-      <%= image_tag "products/04.jpg", class: "w-full h-64 object-cover", alt: "بلوزة شبابية" %>
-      <div class="p-6 text-center">
-        <h3 class="text-xl font-bold mb-3 text-gray-800">بلوزة شبابية</h3>
-        <p class="text-gray-600 mb-4 px-4">من أجود أنواع الملابس ماركة مسجلة عالميًا في إنتاج أفضل أنواع الملابس المنسوجة بعناية</p>
-        <div class="mb-4 space-y-1">
-          <div class="text-sm font-semibold text-gray-700">السعر: 120$</div>
-          <div class="text-sm font-semibold text-gray-700">المقاس: xl</div>
-        </div>
-        <a href="#" class="btn-primary px-8 py-2">شراء</a>
-      </div>
-    </div>
-
-    <!-- Product Card 4 -->
-    <div class="bg-white rounded-lg shadow-lg overflow-hidden product-card w-full max-w-sm">
-      <%= image_tag "products/05.jpg", class: "w-full h-64 object-cover", alt: "قبعة صيفية" %>
-      <div class="p-6 text-center">
-        <h3 class="text-xl font-bold mb-3 text-gray-800">قبعة صيفية</h3>
-        <p class="text-gray-600 mb-4 px-4">من أجود أنواع الملابس ماركة مسجلة عالميًا في إنتاج أفضل أنواع الملابس المنسوجة بعناية</p>
-        <div class="mb-4 space-y-1">
-          <div class="text-sm font-semibold text-gray-700">السعر: 120$</div>
-          <div class="text-sm font-semibold text-gray-700">المقاس: xl</div>
-        </div>
-        <a href="#" class="btn-primary px-8 py-2">شراء</a>
-      </div>
-    </div>
-
-    <!-- Product Card 5 -->
-    <div class="bg-white rounded-lg shadow-lg overflow-hidden product-card w-full max-w-sm">
-      <%= image_tag "products/06.jpg", class: "w-full h-64 object-cover", alt: "بنطال رسمي" %>
-      <div class="p-6 text-center">
-        <h3 class="text-xl font-bold mb-3 text-gray-800">بنطال رسمي</h3>
-        <p class="text-gray-600 mb-4 px-4">من أجود أنواع الملابس ماركة مسجلة عالميًا في إنتاج أفضل أنواع الملابس المنسوجة بعناية</p>
-        <div class="mb-4 space-y-1">
-          <div class="text-sm font-semibold text-gray-700">السعر: 120$</div>
-          <div class="text-sm font-semibold text-gray-700">المقاس: xl</div>
-        </div>
-        <a href="#" class="btn-primary px-8 py-2">شراء</a>
-      </div>
-    </div>
-
-    <!-- Product Card 6 -->
-    <div class="bg-white rounded-lg shadow-lg overflow-hidden product-card w-full max-w-sm">
-      <%= image_tag "products/07.jpg", class: "w-full h-64 object-cover", alt: "حذاء رسمي" %>
-      <div class="p-6 text-center">
-        <h3 class="text-xl font-bold mb-3 text-gray-800">حذاء رسمي</h3>
-        <p class="text-gray-600 mb-4 px-4">من أجود أنواع الملابس ماركة مسجلة عالميًا في إنتاج أفضل أنواع الملابس المنسوجة بعناية</p>
-        <div class="mb-4 space-y-1">
-          <div class="text-sm font-semibold text-gray-700">السعر: 120$</div>
-          <div class="text-sm font-semibold text-gray-700">المقاس: xl</div>
-        </div>
-        <a href="#" class="btn-primary px-8 py-2">شراء</a>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>

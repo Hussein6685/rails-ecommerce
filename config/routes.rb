@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get "products/:id", to: "product#index"
+  get "cart/index"
   post "cart/add_to_cart"
   devise_for :users
   root "home#index"

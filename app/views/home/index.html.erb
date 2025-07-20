@@ -51,6 +51,7 @@
           <div class="text-sm font-semibold text-gray-700">السعر: <%= product.price %>$</div>
           <div class="text-sm font-semibold text-gray-700">المقاس: <%= product.size %></div>
         </div>
+        <a class="btn btn-primary" href="/products/<%= product.id %>">عرض التفاصيل</a>
           <%= button_to('اضافة الى السلة', cart_add_to_cart_path, :class => "btn btn-primary", :form_class => "mt-5 d-inline-block")%>
       </div>
     </div>

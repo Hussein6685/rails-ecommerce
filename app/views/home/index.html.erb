@@ -9,51 +9,28 @@
 
 <!-- Filter Section -->
 <div class="container mx-auto px-4 my-6 text-center">
-  <div class="flex flex-wrap justify-center gap-4">
-    <!-- Age Category Dropdown -->
-    <div class="relative dropdown">
-      <button class="btn-primary flex items-center min-w-48">
-        الفئة العمرية
-        <svg class="w-4 h-4 mr-2 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg>
-      </button>
-      <div class="dropdown-menu">
-        <a href="#" class="dropdown-item">ولادي</a>
-        <a href="#" class="dropdown-item">رجالي</a>
-        <a href="#" class="dropdown-item">نسائي</a>
-      </div>
-    </div>
-
-    <!-- Size Dropdown -->
-    <div class="relative dropdown">
-      <button class="btn-primary flex items-center min-w-48">
-        المقاس
-        <svg class="w-4 h-4 mr-2 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg>
-      </button>
-      <div class="dropdown-menu">
-        <a href="#" class="dropdown-item">small</a>
-        <a href="#" class="dropdown-item">medium</a>
-        <a href="#" class="dropdown-item">large</a>
-      </div>
-    </div>
-
-    <!-- Price Dropdown -->
-    <div class="relative dropdown">
-      <button class="btn-primary flex items-center min-w-48">
-        السعر
-        <svg class="w-4 h-4 mr-2 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg>
-      </button>
-      <div class="dropdown-menu">
-        <a href="#" class="dropdown-item">أقل من 50$</a>
-        <a href="#" class="dropdown-item">أقل من 300$</a>
-        <a href="#" class="dropdown-item">300$ وأكثر</a>
-      </div>
-    </div>
+  <div class="flex flex-wrap justify-center gap-6 mx-8">
+    <form action="/#" method="get" class="w-full max-w-md">
+      <select class="form-select d-inline-block my-1 mx-3" name="category">
+        <option selected disabled>الصنف</option>
+        <% @categories.each do |category| %>
+          <option value="<%= category.id %>"><%= category.title %></option>
+        <% end %>
+      </select>
+      <select class="form-select d-inline-block my-1 mx-3" name="size">
+        <option selected disabled>المقاس</option>
+        <option value="1">صغير</option>
+        <option value="2">متوسط</option>
+        <option value="3">كبير</option>
+      </select>
+      <select class="form-select d-inline-block my-1 mx-3" name="price">
+        <option selected disabled>السعر</option>
+        <option value="1">أقل من 50$</option>
+        <option value="2">أقل من 300$</option>
+        <option value="3">300$ وأكثر</option>
+      </select>
+      <input class="btn-group btn-primary" type="submit" value="تصفية">
+    </form>
   </div>
 </div>
 
@@ -65,11 +42,8 @@
     <div class="bg-white rounded-lg shadow-lg overflow-hidden product-card w-full max-w-sm">
       <%# <%= image_tag "products/02.jpg", class: "w-full h-64 object-cover", alt: "جاكيت رجالي" %>
       <%# <%= image_tag "products/#{products.image_url}", class: "w-full h-64 object-cover", alt: product.name %>
-            <% if product.image_url.present? %>
-        <%= image_tag(product.images_url, class: "card-img-top", alt: product.name) rescue image_tag("logo.png", class: "card-img-top", alt: product.name) %>
-      <% else %>
-        <%= image_tag("logo.png", class: "card-img-top", alt: product.name) %>
-      <% end %>
+        <%= image_tag(product.image_url, class: "card-img-top", alt: product.name) %>
+
       <div class="p-6 text-center">
         <h3 class="text-xl font-bold mb-3 text-gray-800"><%= product.name %></h3>
         <p class="text-gray-600 mb-4 px-4"><%= product.details %></p>

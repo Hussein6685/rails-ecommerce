@@ -1,4 +1,4 @@
-    <div class="container mx-auto px-4 my-6">
+<div class="container mx-auto px-4 my-6">
   <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">سلة المشتريات</h1>
 
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -81,7 +81,8 @@
             </div>
           </div>
         </div>
-      <% end %>      <% if @products.empty? %>
+      <% end %>
+      <% if @products.empty? %>
         <div class="bg-white rounded-lg shadow-lg p-8 text-center">
           <div class="text-gray-400 mb-4">
             <svg class="mx-auto h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -128,6 +129,34 @@
           <button class="btn btn-primary w-full mb-3">إتمام الشراء</button>
           <a href="/" class="block text-center text-blue-600 hover:text-blue-800 transition-colors duration-200">متابعة التسوق</a>
         <% end %>
+        <!-- Payment Form -->
+        <div class="mt-6 pt-6 border-t border-gray-200">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">معلومات الدفع</h3>
+        <form class="card p-3 border-0" id="payment-form">
+          <div class="mb-3">
+            <label for="card-element" class="form-label">
+                اسم حامل البطاقة
+              </label>
+            <input dir="ltr" class="form-control my-1" type="text" name="review_text" style="width: 100%;">
+          </div>
+          <div class="mb-3">
+            <label for="card-element" class="form-label"> رقم البطاقة
+            </label>
+            <div dir="ltr" id="card-element"></div>
+          </div>
+          <button class="btn btn-primary w-full flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed" id="submit">
+            <div class="spinner hidden" id="spinner"></div>
+            <span id="button-text">
+                شراء الآن
+              </span>
+          </button>
+          <p id="card-error" role="alert"></p>
+          <p class="result-message hidden">
+            <a> okay
+              </a>
+          </p>
+        </form>
+        </div>
       </div>
     </div>
   </div>

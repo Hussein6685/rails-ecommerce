@@ -15,4 +15,3 @@
 #   inflect.acronym "RESTful"
 # end
 
-Stripe.api_key = Rails.credentials[:stripe][:secret]

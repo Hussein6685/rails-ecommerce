@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get "products/:id", to: "product#index"
+  post 'invoice/create'
   post 'cart/create_payment_intent'
   get "cart/index"
   post "cart/add_to_cart"

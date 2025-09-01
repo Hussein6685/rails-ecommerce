@@ -45,7 +45,7 @@
 
         <div class="hidden lg:flex items-center space-x-4 space-x-reverse" id="navbar-menu">
           <a class="btn-outline mx-2" href="/cart/index">سلة المشتريات</a>
-          <a class="btn-outline mx-2" href="/reviews">تقييم منتج</a>
+          <a class="btn-outline mx-2" href="/invoice/index">تقييم منتج</a>
           <% if user_signed_in? %>
             <%= button_to 'تسجيل الخروج', destroy_user_session_path, class: 'btn-outline mx-2', method: :delete %>
           <% else %>
@@ -59,7 +59,7 @@
       <div class="lg:hidden mobile-menu" id="mobile-menu">
         <div class="flex flex-col space-y-2 pb-4">
           <a class="btn-outline" href="/cart/index">سلة المشتريات</a>
-          <a class="btn-outline" href="/reviews">تقييم منتج</a>
+          <a class="btn-outline" href="/invoice/index">تقييم منتج</a>
           <% if user_signed_in? %>
             <%= button_to 'تسجيل الخروج', destroy_user_session_path, class: 'btn-outline w-full text-right', method: :delete %>
           <% else %>

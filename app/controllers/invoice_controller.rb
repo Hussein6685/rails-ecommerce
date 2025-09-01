@@ -4,14 +4,17 @@ require 'stripe'
 class InvoiceController < ApplicationController
     before_action :authenticate_user!, only: [:index, :add_review]
     skip_before_action :verify_authenticity_token
-
     def index
-        review_invoice_ids = Review.where(user_id: current_user.id).pluck(:invoice_id)
-        invoices = Invoice.where(user_id: current_user.id).where.not(id: review_invoice_ids)
-        @invoice_ids = invoices.pluck(:id)
-        product_ids = invoices.pluck(:product_id)
-        @products = Product.find(product_ids)
+        @invoices = Invoice.where(user_id: current_user.id)
     end
+
+    # def index
+    #     review_invoice_ids = Review.where(user_id: current_user.id).pluck(:invoice_id)
+    #     invoices = Invoice.where(user_id: current_user.id).where.not(id: review_invoice_ids)
+    #     @invoice_ids = invoices.pluck(:id)
+    #     product_ids = invoices.pluck(:product_id)
+    #     @products = Product.find(product_ids)
+    # end
 
     def create
         payload = request.body.read

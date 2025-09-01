@@ -72,7 +72,7 @@
         </div>
       </div>
             <div class= "card-footer p-4 bg-gray-100 text-center">
-        <% product.invoices.each do |invoice| %>
+        <% product.invoices.last(5).each do |invoice| %>
           <% invoice.reviews.each do |review| %>
             <div class="text-sm text-yellow-500">التقييم: <%= '⭐' * review.rating %></div>
             <div class="text-sm text-gray-600">ملاحظات: <%= review.review_text %></div>

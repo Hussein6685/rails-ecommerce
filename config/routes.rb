@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "cart/index"
   post "cart/add_to_cart"
   devise_for :users
+  post 'review/create'
   root "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

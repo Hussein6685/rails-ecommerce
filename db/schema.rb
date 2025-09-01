@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_31_214824) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_01_092020) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -70,6 +70,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_31_214824) do
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.string "review_text"
+    t.integer "rating"
+    t.bigint "user_id", null: false
+    t.bigint "invoice_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invoice_id"], name: "index_reviews_on_invoice_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -87,4 +98,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_31_214824) do
   add_foreign_key "invoices", "products"
   add_foreign_key "invoices", "users"
   add_foreign_key "products", "categories"
+  add_foreign_key "reviews", "invoices"
+  add_foreign_key "reviews", "users"
 end

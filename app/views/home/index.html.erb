@@ -1,59 +1,84 @@
+<%# filepath: c:\حسين\css pro\pro\rails-projects\rails-ecommerce\app\views\home\index.html.erb %>
 <!-- Hero Section -->
-<div class="container mx-auto px-4 my-6 relative image-container hover:bg-[rgba(0,0,0,0.88)]">
-  <%= image_tag "main-image.jpg", class: "w-full h-auto mx-auto", alt: "shop image" %>
+<div class="container mx-auto px-4 my-6 relative image-container hover:bg-[rgba(0,0,0,0.88)] rounded-xl overflow-hidden shadow-2xl">
+  <%= image_tag "main-image.jpg", class: "w-full h-auto mx-auto transition-transform duration-500 hover:scale-105", alt: "shop image" %>
   <div class="image-caption">
-    <h1>متجر ألبسة</h1>
-    <p>أفضل أنوع الألبسة المحلية والمستوردة</p>
+    <h1 class="text-4xl font-bold mb-4 text-white drop-shadow-lg">متجر ألبسة</h1>
+    <p class="text-xl text-gray-100 drop-shadow-md">أفضل أنوع الألبسة المحلية والمستوردة</p>
   </div>
 </div>
 
 <!-- Filter Section -->
-<div class="container mx-auto px-4 my-6 text-center">
-  <div class="flex flex-wrap justify-center gap-6 mx-8">
-    <form action="/#" method="get" class="w-full max-w-md">
-      <select class="form-select d-inline-block my-1 mx-3" name="category">
+<div class="container mx-auto px-4 my-8">
+  <div class="bg-white rounded-xl shadow-lg p-6">
+    <form action="/#" method="get" class="flex flex-wrap justify-center gap-4 items-center">
+      <select class="form-select border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 min-w-[140px]" name="category">
         <option selected disabled>الصنف</option>
         <% @categories.each do |category| %>
           <option value="<%= category.id %>"><%= category.title %></option>
         <% end %>
       </select>
-      <select class="form-select d-inline-block my-1 mx-3" name="size">
+      <select class="form-select border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 min-w-[140px]" name="size">
         <option selected disabled>المقاس</option>
         <option value="1">صغير</option>
         <option value="2">متوسط</option>
         <option value="3">كبير</option>
       </select>
-      <select class="form-select d-inline-block my-1 mx-3" name="price">
+      <select class="form-select border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 min-w-[140px]" name="price">
         <option selected disabled>السعر</option>
         <option value="1">أقل من 50$</option>
         <option value="2">أقل من 300$</option>
         <option value="3">300$ وأكثر</option>
       </select>
-      <input class="btn-group btn-primary" type="submit" value="تصفية">
+      <input class="btn btn-primary px-8 py-2 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300" type="submit" value="تصفية">
     </form>
   </div>
 </div>
 
 <!-- Products Section -->
-<div class="container mx-auto px-4 my-6">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+<div class="container mx-auto px-4 my-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
     <% @products.each do |product| %>
-    <!-- Product Card 1 -->
-    <div class="bg-white rounded-lg shadow-lg overflow-hidden product-card w-full max-w-sm">
-      <%# <%= image_tag "products/02.jpg", class: "w-full h-64 object-cover", alt: "جاكيت رجالي" %>
-      <%# <%= image_tag "products/#{products.image_url}", class: "w-full h-64 object-cover", alt: product.name %>
-        <%= image_tag(product.image_url, class: "card-img-top", alt: product.name) %>
-
-      <div class="p-6 text-center">
-        <h3 class="text-xl font-bold mb-3 text-gray-800"><%= product.name %></h3>
-        <p class="text-gray-600 mb-4 px-4"><%= product.details %></p>
-        <div class="mb-4 space-y-1">
-          <div class="text-sm font-semibold text-gray-700">السعر: <%= product.price %>$</div>
-          <div class="text-sm font-semibold text-gray-700">المقاس: <%= product.size %></div>
-        </div>
-        <a class="btn btn-primary" href="/products/<%= product.id %>">عرض التفاصيل</a>
-          <%= button_to('اضافة الى السلة', cart_add_to_cart_path, :class => "btn btn-primary", :form_class => "mt-5 d-inline-block", method: :post, params: { product_id: product.id }, :onclick => "alert('تمت إضافة المنتج إلى السلة!')") %>
+    <!-- Product Card -->
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden product-card w-full max-w-sm hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
+      <div class="relative group overflow-hidden">
+        <%= image_tag(product.image_url, class: "w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500", alt: product.name) %>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
+
+      <div class="p-6 text-center space-y-4">
+        <h3 class="text-xl font-bold text-gray-800 hover:text-blue-600 transition-colors duration-300 leading-tight"><%= product.name %></h3>
+        <p class="text-gray-600 text-sm line-clamp-2 leading-relaxed"><%= product.details %></p>
+
+        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+          <div class="text-left">
+            <span class="text-xs text-gray-500">السعر</span>
+            <div class="text-lg font-bold text-blue-600"><%= product.price %>$</div>
+          </div>
+          <div class="text-right">
+            <span class="text-xs text-gray-500">المقاس</span>
+            <div class="text-sm font-semibold text-gray-700"><%= product.size %></div>
+          </div>
+        </div>
+
+        <div class="space-y-3 pt-2">
+          <a class="btn btn-outline w-full py-2 rounded-lg border-2 border-gray-300 text-gray-700 hover:border-blue-500 hover:text-blue-600 transition-all duration-300" href="/products/<%= product.id %>">عرض التفاصيل</a>
+          <%= button_to('اضافة الى السلة', cart_add_to_cart_path,
+              :class => "btn btn-primary w-full py-2 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300",
+              :form_class => "w-full",
+              method: :post,
+              params: { product_id: product.id },
+              :onclick => "alert('تمت إضافة المنتج إلى السلة!')") %>
+        </div>
+      </div>
+            <div class= "card-footer p-4 bg-gray-100 text-center">
+        <% product.invoices.each do |invoice| %>
+          <% invoice.reviews.each do |review| %>
+            <div class="text-sm text-yellow-500">التقييم: <%= '⭐' * review.rating %></div>
+            <div class="text-sm text-gray-600">ملاحظات: <%= review.review_text %></div>
+          <% end %>
+        <% end %>
+    </div>
     </div>
     <% end %>
   </div>
